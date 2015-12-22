@@ -1,6 +1,6 @@
 import functools
 
-from mainline.catalog import ICatalog, Catalog
+from mainline.catalog import ICatalog, Catalog, LayeredCatalog
 from mainline.exceptions import UnresolvableError
 from mainline.injection import ClassPropertyInjector, AutoSpecInjector, SpecInjector
 from mainline.scope import ScopeRegistry, NoneScope, GlobalScope
@@ -20,7 +20,7 @@ class Di(ICatalog):
     Catalog = Catalog
     Provider = Provider
 
-    def __init__(self, providers_factory=Catalog, dependencies_factory=dict):
+    def __init__(self, providers_factory=LayeredCatalog, dependencies_factory=dict):
         self._providers = providers_factory()
         self._dependencies = dependencies_factory()
         super(Di, self).__init__()
@@ -29,8 +29,17 @@ class Di(ICatalog):
     def providers(self):
         '''
         Public attribute for provider mapping
+
+        TODO Get rid of this, it's dumb with LayeredCatalog
         '''
         return self._providers
+
+    @property
+    def catalogs(self):
+        '''
+        Public attribute for catalog management
+        '''
+        return self._providers.catalogs
 
     @property
     def dependencies(self):
@@ -38,22 +47,6 @@ class Di(ICatalog):
         Public attributes for dependency mapping
         '''
         return self._dependencies
-
-    def update(self, catalog=None, dependencies=None, allow_overwrite=False):
-        '''
-        Convenience method to update this Di instance with the specified contents.
-
-        :param catalog: ICatalog supporting class or mapping
-        :type catalog: ICatalog or collections.Mapping
-        :param dependencies: Mapping of dependencies
-        :type dependencies: collections.Mapping
-        :param allow_overwrite: If True, allow overwriting existing keys. Only applies to providers.
-        :type allow_overwrite: bool
-        '''
-        if catalog:
-            self._providers.update(catalog, allow_overwrite=allow_overwrite)
-        if dependencies:
-            self._dependencies.update(dependencies)
 
     def get_deps(self, obj):
         '''

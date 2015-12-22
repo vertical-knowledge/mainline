@@ -259,8 +259,8 @@ The :class:`~mainline.catalog.Catalog` class provides a declarative way to group
     ...     @di.provider(scope='thread')
     ...     def banana():
     ...         return 'banana'
-
-    >>> di.update(TestingCatalog)
+    >>> testing_catalog = TestingCatalog()
+    >>> di.catalogs.append(testing_catalog)
 
     >>> @di.inject('apple', 'banana', 'orange')
     ... def injected(apple, banana, orange):
@@ -273,41 +273,14 @@ The :class:`~mainline.catalog.Catalog` class provides a declarative way to group
     ...     @di.provider(scope='thread')
     ...     def banana():
     ...         return 'prod_banana'
-
-    >>> di.update(ProductionCatalog, allow_overwrite=True)
+    >>> production_catalog = ProductionCatalog()
+    >>> di.catalogs.insert(0, production_catalog)
 
     >>> @di.inject('apple', 'banana', 'orange')
     ... def injected(apple, banana, orange):
     ...     return apple, banana, orange
 
     >>> injected() == ('apple', 'prod_banana', 'orange')
-    True
-
-
-You can update a Di instance from another as well:
-
-.. testsetup::
-    >>> di = Di()
-
-.. code:: python
-
-    >>> @di.register_factory('apple')
-    ... def apple():
-    ...     return 'apple'
-
-    >>> other_di = Di()
-
-    >>> @other_di.register_factory('banana')
-    ... def banana():
-    ...     return 'banana'
-
-    >>> di.update(other_di)
-
-    >>> @di.inject('apple', 'banana')
-    ... def injected(apple, banana):
-    ...     return apple, banana
-
-    >>> injected() == ('apple', 'banana')
     True
 
 

@@ -54,7 +54,6 @@ class SpecInjector(CallableInjector):
         # Remove the number of args from the wrapped function's argspec
         spec = inspect.getargspec(wrapped)
         new_args = spec.args[len(self.args):]
-        spec.keywords
 
         # Update argspec
         spec = inspect.ArgSpec(new_args, *spec[1:])
@@ -83,7 +82,7 @@ class AutoSpecInjector(CallableInjector):
                 injectables = self.injectables
             else:
                 # TODO This is too much access..
-                injectables = self.di.providers.keys()
+                injectables = set(self.di._providers)
 
             injected_args = []
             args_cur_index = 0
