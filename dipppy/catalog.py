@@ -2,8 +2,8 @@ import inspect
 import six
 import abc
 
-from mainline.utils import ProxyMutableMapping
-from mainline.provider import IProvider
+from dipppy.utils import ProxyMutableMapping
+from dipppy.provider import IProvider
 
 _sentinel = object()
 _provider_mapping_factory = dict

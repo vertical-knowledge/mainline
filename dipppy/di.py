@@ -1,10 +1,10 @@
 import functools
 
-from mainline.catalog import ICatalog, Catalog
-from mainline.exceptions import UnresolvableError
-from mainline.injection import ClassPropertyInjector, AutoSpecInjector, SpecInjector
-from mainline.scope import ScopeRegistry, NoneScope, GlobalScope
-from mainline.provider import Provider, provider_factory
+from dipppy.catalog import ICatalog, Catalog
+from dipppy.exceptions import UnresolvableError
+from dipppy.injection import ClassPropertyInjector, AutoSpecInjector, SpecInjector
+from dipppy.scope import ScopeRegistry, NoneScope, GlobalScope
+from dipppy.provider import Provider, provider_factory
 
 _sentinel = object()
 

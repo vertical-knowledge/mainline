@@ -2,7 +2,7 @@ from setuptools import setup
 import sys
 
 __version__ = 'unknown'  # This is ovewritten by the execfile below
-exec (open('mainline/_version.py').read())
+exec (open('dipppy/_version.py').read())
 
 def parse_requirements(filename):
     ret = [line.strip() for line in open(filename).read().splitlines()]
@@ -10,9 +10,9 @@ def parse_requirements(filename):
     return ret
 
 conf = dict(
-    name='mainline',
+    name='dipp.py',
     description='Simple yet powerful python dependency injection for py2/py3k',
-    url='http://github.com/vertical-knowledge/mainline',
+    url='http://github.com/vertical-knowledge/dipppy',
     author='Vertical Knowledge',
     author_email='ops@vertical-knowledge.com',
     license='GPL',
@@ -20,7 +20,7 @@ conf = dict(
     classifiers=[],
 
     version=__version__,
-    packages=['mainline'],
+    packages=['dipp.py'],
 
     install_requires=parse_requirements('requirements/install.txt'),
     tests_require=parse_requirements('requirements/test.txt'),

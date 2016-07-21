@@ -1,7 +1,7 @@
 import functools
 
-from mainline.exceptions import UnprovidableError
-from mainline.scope import ScopeRegistry, NoneScope
+from dipppy.exceptions import UnprovidableError
+from dipppy.scope import ScopeRegistry, NoneScope
 _sentinel = object()
 
 

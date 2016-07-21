@@ -1,5 +1,7 @@
-mainline
+Dipp.py
 ========
+
+Power, precision, pronouns
 
 Simple yet powerful python dependency injection.
 
@@ -11,13 +13,18 @@ Tested with Python 2.7, 3.4, 3.5.
 - API Docs: http://mainline.readthedocs.org/en/latest/mainline.html
 - PyPi: https://pypi.python.org/pypi/mainline
 
+Note
+----
+This project was previously called mainline. While we transition to the new name, some links (including the ones above) may still reference the old Mainline name.
 
 Installation
 ------------
 
+Old versions may still be installed using the 'mainline' name.
+
 .. code:: sh
 
-    pip install mainline
+    pip install dipp.py
 
 
 

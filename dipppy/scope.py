@@ -2,7 +2,7 @@ import os
 import threading
 import collections
 
-from mainline.utils import ProxyMutableMapping
+from dipppy.utils import ProxyMutableMapping
 
 
 class IScope(ProxyMutableMapping):

@@ -4,8 +4,8 @@ import inspect
 import six
 import wrapt
 
-from mainline.exceptions import DiError
-from mainline.utils import OBJECT_INIT, classproperty
+from dipppy.exceptions import DiError
+from dipppy.utils import OBJECT_INIT, classproperty
 
 
 class Injector(object):
